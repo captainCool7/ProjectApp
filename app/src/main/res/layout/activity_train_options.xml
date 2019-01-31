@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrainOptions">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:text="You Can Search for"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/status"
+                android:onClick="liveTrain" />
+
+            <ImageButton
+                android:id="@+id/pnr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pnr"
+                android:onClick="pnrStatus" />
+
+            <ImageButton
+                android:id="@+id/live_station"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/live_station" />
+
+            <ImageButton
+                android:id="@+id/seat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/seat" />
+
+            <ImageButton
+                android:id="@+id/on_station"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/on_station" />
+
+            <ImageButton
+                android:id="@+id/fare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fare"
+                android:onClick="trainFare" />
+
+            <ImageButton
+                android:id="@+id/schedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/schedule" />
+
+            <ImageButton
+                android:id="@+id/no_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/no_info" />
+
+            <ImageButton
+                android:id="@+id/bet_station"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bet_station" />
+
+            <ImageButton
+                android:id="@+id/name_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/name_number" />
+
+            <ImageButton
+                android:id="@+id/cancelled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cancelled" />
+
+            <ImageButton
+                android:id="@+id/rescheduled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rescheduled" />
+
+            <ImageButton
+                android:id="@+id/partial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/partial" />
+
+            <ImageButton
+                android:id="@+id/diverted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/diverted" />
+
+            <ImageButton
+                android:id="@+id/special"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/special" />
+
+            <ImageButton
+                android:id="@+id/heritage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/heritage" />
+
+            <ImageButton
+                android:id="@+id/premium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/premium" />
+
+            <ImageButton
+                android:id="@+id/fast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fast" />
+
+            <ImageButton
+                android:id="@+id/station_loc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/station_loc" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

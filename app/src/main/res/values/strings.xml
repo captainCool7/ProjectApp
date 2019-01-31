@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ProjectApp</string>
+    <string name="title_activity_direction_result_activity">Map</string>
+    <string name="item1">Home</string>
+    <string name="item2">Schedule</string>
+    <string name="item3">Direction</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">NqRiQpnOZ6l0puqfsBKnrjzec4PWcXHd23Fte2Br</string>
+    <string name="back4app_client_key">pP2dddLPYNwHQz7GzLD9Gd7fbHGRw1sbw69jtmG6</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
