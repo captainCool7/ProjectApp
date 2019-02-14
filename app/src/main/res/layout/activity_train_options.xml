@@ -53,7 +53,8 @@
                 android:id="@+id/live_station"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/live_station" />
+                android:background="@drawable/live_station"
+                android:onClick="liveStation" />
 
             <ImageButton
                 android:id="@+id/seat"

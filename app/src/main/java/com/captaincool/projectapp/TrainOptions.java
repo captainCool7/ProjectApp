@@ -23,6 +23,11 @@ public class TrainOptions extends AppCompatActivity {
         Intent intent = new Intent(this,PNRStatus.class);
         startActivity(intent);
     }
+    public void liveStation(View view)
+    {
+        Intent intent = new Intent(this,LiveStation.class);
+        startActivity(intent);
+    }
     public void cancelledTrain(View view)
     {
         Intent intent = new Intent(this,TrainOptions.class);
