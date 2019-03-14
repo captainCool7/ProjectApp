@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ScheduleHome">
@@ -11,46 +12,41 @@
         android:layout_height="match_parent"
         android:background="@drawable/back">
 
-        <TextView
-            android:id="@+id/textView22"
+        <EditText
+            android:id="@+id/place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:text="Enter the City"
-            android:textSize="18sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/cityName2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/sButton"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="number"
+            android:text="Search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/place" />
+
+        <ListView
+            android:id="@+id/listView3"
+            android:layout_width="0dp"
+            android:layout_height="309dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="147dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="328dp"
-            android:background="@drawable/buttonback"
-            android:text="generete Schedule"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cityName2"
-            app:layout_constraintVertical_bias="0.46" />
+            app:layout_constraintTop_toBottomOf="@+id/sButton" />
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

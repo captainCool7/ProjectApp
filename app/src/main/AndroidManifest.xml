@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LiveStation"></activity>
+        <activity android:name=".scheduleResult"></activity>
+        <activity android:name=".LiveStation" />
         <activity android:name=".PNRStatus" />
         <activity android:name=".LiveTrainSatus" />
         <activity android:name=".TrainOptions" />
@@ -50,7 +51,6 @@
         <activity
             android:name=".DirectionResult_activity"
             android:label="@string/title_activity_direction_result_activity" />
-        <activity android:name=".ScheduleForm" />
         <activity android:name=".Bus_form" />
         <activity android:name=".Flight_form" />
         <activity android:name=".Hotel_form" />

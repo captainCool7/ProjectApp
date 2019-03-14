@@ -8,12 +8,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 public class Home_activity extends AppCompatActivity {
     TextView msg;
@@ -31,7 +36,7 @@ public class Home_activity extends AppCompatActivity {
 
     public void CreateSchedule(View view)
     {
-        Intent intent = new Intent(this,ScheduleForm.class);
+        Intent intent = new Intent(this,ScheduleHome.class);
         startActivity(intent);
     }
 
@@ -80,6 +85,22 @@ public class Home_activity extends AppCompatActivity {
                 }
             }
         });
+//        ParseObject places = new ParseObject("Places");
+//        places.put("name","Lonavala");
+//        places.put("id",1001);
+//        places.put("url","https://api.myjson.com/bins/1fn4d6");
+//        places.put("price",1200);
+//        places.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if(e == null) {
+//                    Toast.makeText(Home_activity.this, "Successfully Inserted", Toast.LENGTH_SHORT).show();
+//                    Log.i("myapp","Inserted Successfully");
+//                }else {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
     public void logOut(View v)
     {
