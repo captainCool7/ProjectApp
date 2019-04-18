@@ -4,45 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scheduleResult">
+    tools:context=".successfulPay">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="152dp"
         android:layout_marginEnd="8dp"
-        android:text="This Package Contains"
-        android:textSize="24sp"
+        android:text="Payment is Successful"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/resultView"
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="156dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/start_transaction"
-        app:layout_constraintHorizontal_bias="0.056"
+        android:onClick="BackHome"
+        android:text="Go back to Home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-    <Button
-        android:layout_width="217dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_transaction"
-        android:text="Start Payment"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:textSize="16dip"
-        android:layout_marginTop="30dip"
-        android:layout_weight="2.05"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintTop_toBottomOf="@+id/resultView"/>
 
 </android.support.constraint.ConstraintLayout>

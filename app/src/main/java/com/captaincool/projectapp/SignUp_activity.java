@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,9 +14,13 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import java.util.regex.Pattern;
+
 public class SignUp_activity extends AppCompatActivity {
 
     EditText name,mail,pass,cpass;
+    Pattern namePattern = Pattern.compile("^[A-Za-z\\s]+[A-Za-z\\s]*$");
+    Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,15 @@ public class SignUp_activity extends AppCompatActivity {
         } else if(!pass.getText().toString().equals(cpass.getText().toString()))
         {
             cpass.setError("Password should be same");
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(mail.getText()).matches())
+        {
+            mail.setError("Please Provide Correct email address");
+        } else if(!namePattern.matcher(name.getText()).matches())
+        {
+            name.setError("Not a correct name");
+        } else if(!passwordPattern.matcher(pass.getText()).matches())
+        {
+            pass.setError("Password is not Correct");
         }
         else
         {
