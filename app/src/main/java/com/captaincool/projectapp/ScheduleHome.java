@@ -1,6 +1,7 @@
 package com.captaincool.projectapp;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
@@ -43,10 +45,13 @@ public class ScheduleHome extends Fragment {
 
     ListView listView;
     EditText editText;
-    Button button;
+    Button button,myPlan;
     String url;
-    ArrayList<String> nameList,urlList;
-
+    int price,id;
+    ArrayList<String> nameList,urlList,idList,priceList;
+    ProgressDialog progress;
+    ArrayAdapter<String> arrayAdapter;
+    ParseUser user ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,14 +60,29 @@ public class ScheduleHome extends Fragment {
         listView =(ListView) v.findViewById(R.id.listView3);
         editText = v.findViewById(R.id.place);
         button =(Button) v.findViewById(R.id.sButton);
+        myPlan = v.findViewById(R.id.myPlan);
+        user = ParseUser.getCurrentUser();
         nameList = new ArrayList<String>();
         urlList = new ArrayList<String>();
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, nameList);
-        listView.setAdapter(arrayAdapter);
+        priceList = new ArrayList<String>();
+        idList = new ArrayList<String>();
+        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, nameList);
+
+        if(user.get("pkgCode") == null)
+        {
+            myPlan.setVisibility(View.INVISIBLE);
+        }
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progress = new ProgressDialog(view.getContext());
                 search();
+            }
+        });
+        myPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMyPlan();
             }
         });
 //        ParseObject places = new ParseObject("Places");
@@ -87,8 +107,16 @@ public class ScheduleHome extends Fragment {
     {
         Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
     }
+
+    public void showMyPlan()
+    {
+        Intent intent = new Intent(getApplicationContext(),planPage.class);
+        startActivity(intent);
+    }
     public void search()
     {
+        progress.setMessage("Please wait");
+        progress.show();
         generateToast("Working 1");
         if(TextUtils.isEmpty(editText.getText()))
         {
@@ -116,10 +144,14 @@ public class ScheduleHome extends Fragment {
                                 Log.i("myapp",object.getString("name"));
                                 nameList.add(object.getString("name"));
                                 urlList.add(object.getString("url"));
+                                priceList.add(String.valueOf(object.getNumber("price")));
+                                idList.add(String.valueOf(object.getNumber("id")));
                                 Log.i("myapp",object.getString("url"));
                             }
                         }
                     }
+                    listView.setAdapter(arrayAdapter);
+                    progress.dismiss();
                 }
             });
 //            Cursor c = myDb.rawQuery("SELECT * FROM places where name like '"+ editText.getText().toString() +"%'", null);
@@ -144,6 +176,8 @@ public class ScheduleHome extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 url = urlList.get(i);
+                price = Integer.parseInt(String.valueOf(priceList.get(i)));
+                id = Integer.parseInt(String.valueOf(idList.get(i)));
                 nextAct();
             }
         });
@@ -152,6 +186,8 @@ public class ScheduleHome extends Fragment {
         Log.i("myapp",url);
         Intent intent = new Intent(getApplicationContext(),scheduleResult.class);
         intent.putExtra("url",url);
+        intent.putExtra("price",price);
+        intent.putExtra("id",id);
         startActivity(intent);
     }
 }

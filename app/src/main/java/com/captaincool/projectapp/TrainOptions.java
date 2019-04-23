@@ -28,6 +28,16 @@ public class TrainOptions extends AppCompatActivity {
         Intent intent = new Intent(this,LiveStation.class);
         startActivity(intent);
     }
+    public void seatAvailability(View view)
+    {
+        Intent intent = new Intent(this,SeatAvailability.class);
+        startActivity(intent);
+    }
+    public void trainSchedule(View view)
+    {
+        Intent intent = new Intent(this,trainSchedule.class);
+        startActivity(intent);
+    }
     public void cancelledTrain(View view)
     {
         Intent intent = new Intent(this,TrainOptions.class);
@@ -40,7 +50,7 @@ public class TrainOptions extends AppCompatActivity {
     }
     public void trainFare(View view)
     {
-        Intent intent = new Intent(this,TrainOptions.class);
+        Intent intent = new Intent(this,TrainFair.class);
         startActivity(intent);
     }
 }

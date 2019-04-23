@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.paytm.pgsdk.PaytmOrder;
 import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
@@ -20,7 +24,8 @@ import java.util.HashMap;
 
 public class checksum extends AppCompatActivity implements PaytmPaymentTransactionCallback {
     String custid="", orderId="", mid="";
-    int status = 0;
+    int status = 0,price,id;
+    ParseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,8 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
         Intent intent = getIntent();
         orderId = intent.getExtras().getString("orderid");
         custid = intent.getExtras().getString("custid");
+        price = intent.getIntExtra("price", 1400);
+        id = intent.getIntExtra("id", 1001);
         mid = "pbnCXY76119730523099"; /// your marchant key
         sendUserDetailTOServerdd dl = new sendUserDetailTOServerdd();
         dl.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -49,27 +56,34 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
             this.dialog.show();
         }
         protected String doInBackground(ArrayList<String>... alldata) {
-            JSONParser jsonParser = new JSONParser(checksum.this);
-            String param=
-                    "MID="+mid+
-                            "&ORDER_ID=" + orderId+
-                            "&CUST_ID="+ custid +
-                            "&CHANNEL_ID=WAP&TXN_AMOUNT=1200&WEBSITE=WEBSTAGING"+
-                            "&CALLBACK_URL="+ varifyurl+"&INDUSTRY_TYPE_ID=Retail";
-            Log.e("CheckSum result >>",param);
-            JSONObject jsonObject = jsonParser.makeHttpRequest(url,"POST",param);
-            // yaha per checksum ke saht order id or status receive hoga..
-            Log.e("CheckSum result >>",jsonObject.toString());
-            if(jsonObject != null){
-                Log.e("CheckSum result >>",jsonObject.toString());
-                try {
-                    CHECKSUMHASH=jsonObject.has("CHECKSUMHASH")?jsonObject.getString("CHECKSUMHASH"):"";
-                    Log.e("CheckSum result >>",CHECKSUMHASH);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            try {
+                JSONParser jsonParser = new JSONParser(checksum.this);
+                String param =
+                        "MID=" + mid +
+                                "&ORDER_ID=" + orderId +
+                                "&CUST_ID=" + custid +
+                                "&CHANNEL_ID=WAP&TXN_AMOUNT=" + price + "&WEBSITE=WEBSTAGING" +
+                                "&CALLBACK_URL=" + varifyurl + "&INDUSTRY_TYPE_ID=Retail";
+                Log.e("CheckSum result >>", param);
+                JSONObject jsonObject = jsonParser.makeHttpRequest(url, "POST", param);
+                // yaha per checksum ke saht order id or status receive hoga..
+                Log.e("CheckSum result >>", jsonObject.toString());
+                if (jsonObject != null) {
+                    Log.e("CheckSum result >>", jsonObject.toString());
+                    try {
+                        CHECKSUMHASH = jsonObject.has("CHECKSUMHASH") ? jsonObject.getString("CHECKSUMHASH") : "";
+                        Log.e("CheckSum result >>", CHECKSUMHASH);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
+                return CHECKSUMHASH;
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+                Toast.makeText(checksum.this,"Server is responding",Toast.LENGTH_SHORT).show();
             }
-            return CHECKSUMHASH;
+            return null;
         }
         @Override
         protected void onPostExecute(String result) {
@@ -88,7 +102,7 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
             paramMap.put("ORDER_ID", orderId);
             paramMap.put("CUST_ID", custid);
             paramMap.put("CHANNEL_ID", "WAP");
-            paramMap.put("TXN_AMOUNT", "1200");
+            paramMap.put("TXN_AMOUNT", String.valueOf(price));
             paramMap.put("WEBSITE", "WEBSTAGING");
             paramMap.put("CALLBACK_URL" ,varifyurl);
             //paramMap.put( "EMAIL" , "abc@gmail.com");   // no need
@@ -110,6 +124,14 @@ public class checksum extends AppCompatActivity implements PaytmPaymentTransacti
     public void successfulPage(int cstatus)
     {
         if(cstatus == 1) {
+            user = ParseUser.getCurrentUser();
+            user.put("pkgCode",id);
+            user.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    Log.i("checksum","Succesfully Added Data");
+                }
+            });
             Intent intent = new Intent(this, successfulPay.class);
             startActivity(intent);
         }else

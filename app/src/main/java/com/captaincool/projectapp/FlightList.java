@@ -64,7 +64,7 @@ public class FlightList extends AppCompatActivity {
             depTime.setText(depArray.get(i));
             Des.setText(desArray.get(i));
             stops.setText(stopsArray.get(i));
-            price.setText(priceArray.get(i).toString());
+            price.setText("₹"+priceArray.get(i).toString());
             return cview;
         }
     }
@@ -126,7 +126,7 @@ public class FlightList extends AppCompatActivity {
                 progress.dismiss();
             }catch (Exception e)
             {
-                Log.i("done","Error is "+e);
+                Log.i(TAG,"Error is "+e);
                 e.printStackTrace();
             }
             Log.i(TAG,"Working 2");

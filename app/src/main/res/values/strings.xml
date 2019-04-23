@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ProjectApp</string>
+    <string name="google_maps_key">AIzaSyALJAfoFSEE3CpPKBSjPSiIZ-RbtLf-9X4</string>
     <string name="title_activity_direction_result_activity">Map</string>
     <string name="item1">Home</string>
     <string name="item2">Schedule</string>
@@ -12,4 +13,23 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Data for Seat -->
+    <string-array name="seat_class">
+        <item>1A</item>
+        <item>2A</item>
+        <item>3A</item>
+        <item>SL</item>
+    </string-array>
+    <string-array name="fair_quota">
+        <item>GN</item>
+        <item>CK</item>
+    </string-array>
+    <!-- Travelling Mods -->
+    <string-array name="travelling_type">
+        <item>driving</item>
+        <item>walking</item>
+        <item>bicycling</item>
+        <item>transit</item>
+    </string-array>
 </resources>

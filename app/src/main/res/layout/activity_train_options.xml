@@ -60,7 +60,8 @@
                 android:id="@+id/seat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/seat" />
+                android:background="@drawable/seat"
+                android:onClick="seatAvailability" />
 
             <ImageButton
                 android:id="@+id/on_station"
@@ -79,7 +80,8 @@
                 android:id="@+id/schedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/schedule" />
+                android:background="@drawable/schedule"
+                android:onClick="trainSchedule" />
 
             <ImageButton
                 android:id="@+id/no_info"

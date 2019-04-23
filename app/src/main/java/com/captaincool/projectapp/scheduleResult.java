@@ -22,11 +22,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 
 public class scheduleResult extends AppCompatActivity {
     final static String TAG = "myapp";
-    EditText orderid, custid;
+    String orderid, custid;
     TextView resultView;
+    public static final String DATA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static Random RANDOM = new Random();
     public class DownloadTask extends AsyncTask<String, Void,String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -67,7 +70,10 @@ public class scheduleResult extends AppCompatActivity {
         resultView = findViewById(R.id.resultView);
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
+        final int price = intent.getIntExtra("price",1100);
+        final int id = intent.getIntExtra("id",1001);
         Log.i(TAG, "Url is " + url);
+        orderid = randomString(9);
 //        Log.i(TAG,"Url is "+ intent.getStringExtra("url"));
         try {
             DownloadTask task = new DownloadTask();
@@ -82,8 +88,10 @@ public class scheduleResult extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(scheduleResult.this, checksum.class);
-                intent.putExtra("orderid","943355644756ret");
+                intent.putExtra("orderid",""+orderid);
                 intent.putExtra("custid",user.toString());
+                intent.putExtra("price",price);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });
@@ -92,4 +100,12 @@ public class scheduleResult extends AppCompatActivity {
             ActivityCompat.requestPermissions(scheduleResult.this, new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS}, 101);
         }
     }
+    public static String randomString(int len) {
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(DATA.charAt(RANDOM.nextInt(DATA.length())));
+        }
+        return sb.toString();
+    }
 }
+
